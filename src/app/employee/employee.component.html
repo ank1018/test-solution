@@ -25,7 +25,12 @@
         <td>{{emp.address.address_line1 || 'NA'}}</td>
         <td>{{emp.address.address_line2 || 'NA'}}</td>
         <td>{{emp.address.postal_code || 'NA'}}</td>
+        <td>
+            <button [routerLink]="['/edit', emp.id]" class="save-btn" mat-raised-button color="primary" type="submit">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>
+
+  <button routerLink="/add" type="button" class="btn btn-primary">Add New</button>
 </div>

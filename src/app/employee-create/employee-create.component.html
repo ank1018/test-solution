@@ -1,0 +1,62 @@
+<div class="container">
+    <mat-card>
+      <h4>Add Employee</h4>
+        <form [formGroup]="empForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col-6">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="name" placeholder="Name" required />
+                    <mat-error *ngIf="empForm.controls['name'].touched && empForm.get('name').invalid">
+                        <span *ngIf="empForm.get('name').errors['required']">
+                          This field is required
+                        </span>
+                        <span *ngIf="empForm.get('name').errors['minlength']">
+                          Minimum 4 characters required
+                        </span>
+                      </mat-error>
+                  </mat-form-field>
+            </div>
+
+            <div class="col-6">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="phone" placeholder="Phone" required />
+                    <mat-error *ngIf="empForm.controls['phone'].touched && empForm.get('phone').invalid">
+                        <span *ngIf="empForm.get('phone').errors['required']">
+                            This field is required
+                          </span>
+                          <span *ngIf="empForm.get('phone').errors['pattern']">
+                            Please enter a valid phone number
+                          </span>
+                      </mat-error>
+                  </mat-form-field>
+            </div>
+
+            <div class="col-6">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="city" placeholder="City" required />
+                  </mat-form-field>
+            </div>
+
+            <div class="col-6">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="addOne" placeholder="Address 1" required />
+                  </mat-form-field>
+            </div>
+
+            <div class="col-6">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="addTwo" placeholder="Address 2" required />
+                  </mat-form-field>
+            </div>
+
+            <div class="col-6">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="code" placeholder="Postal Code" required />
+                  </mat-form-field>
+            </div>
+          </div>
+          <button [disabled]="!empForm.valid" class="save-btn" mat-raised-button color="accent" type="submit">Save Employee</button>
+        </form>
+      </mat-card>
+</div>
+
