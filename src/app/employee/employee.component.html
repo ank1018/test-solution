@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Employee Table</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th class="clickable-row" (click)="sortTable('name')">Name(sort)</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Address 1</th>
+        <th>Address 2</th>
+        <th>Postal Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of arrEmp">
+        <td>{{emp.id || 'NA'}}</td>
+        <td>{{emp.name || 'NA'}}</td>
+        <td>{{emp.phone || 'NA'}}</td>
+        <td>{{emp.address.city || 'NA'}}</td>
+        <td>{{emp.address.address_line1 || 'NA'}}</td>
+        <td>{{emp.address.address_line2 || 'NA'}}</td>
+        <td>{{emp.address.postal_code || 'NA'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
