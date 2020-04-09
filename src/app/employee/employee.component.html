@@ -1,5 +1,9 @@
 <div class="container">
   <h2>Employee Table</h2>
+  <div class="form-group">
+    <label for="usr">Search</label>
+    <input type="text" class="form-control" id="usr" (keyup)="search($event)">
+  </div>
   <table class="table">
     <thead>
       <tr>

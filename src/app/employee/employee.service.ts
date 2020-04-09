@@ -12,7 +12,7 @@ export class EmpService {
       "phone": "9999999999",
       "address":
       {
-      "city": "Pune",
+      "city": "Delhi",
       "address_line1":"ABC road",
       "address_line2":"XYZ building",
       "postal_code":"12455"

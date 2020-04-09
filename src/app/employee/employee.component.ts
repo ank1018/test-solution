@@ -1,24 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { EmpService } from './employee.service';
+import { Component, OnInit } from "@angular/core";
+import { EmpService } from "./employee.service";
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  selector: "app-employee",
+  templateUrl: "./employee.component.html",
+  styleUrls: ["./employee.component.css"]
 })
 export class EmployeeComponent implements OnInit {
-  arrEmp: { "id": number; "name": string; "phone": string; "address": { "city": string; "address_line1": string; "address_line2": string; "postal_code": string; }; }[] = [];
+  arrEmp: {
+    id: number;
+    name: string;
+    phone: string;
+    address: {
+      city: string;
+      address_line1: string;
+      address_line2: string;
+      postal_code: string;
+    };
+  }[] = [];
   sortOrderAsc = false;
-  constructor(
-    private empService: EmpService
-  ) { }
+  constructor(private empService: EmpService) {}
 
   ngOnInit(): void {
     this.arrEmp = this.empService.empArray;
   }
 
   sortTable(type) {
-    if(this.sortOrderAsc) {
+    if (this.sortOrderAsc) {
       this.arrEmp.sort(this.dynamicSort("-name"));
     } else {
       this.arrEmp.sort(this.dynamicSort("name"));
@@ -26,20 +34,27 @@ export class EmployeeComponent implements OnInit {
     this.sortOrderAsc = !this.sortOrderAsc;
   }
 
-   dynamicSort(property) {
+  dynamicSort(property) {
     var sortOrder = 1;
 
-    if(property[0] === "-") {
-        sortOrder = -1;
-        property = property.substr(1);
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
     }
-    return function (a,b) {
-        if(sortOrder == -1){
-            return b[property].localeCompare(a[property]);
-        }else{
-            return a[property].localeCompare(b[property]);
-        }
-    }
-}
+    return function(a, b) {
+      if (sortOrder == -1) {
+        return b[property].localeCompare(a[property]);
+      } else {
+        return a[property].localeCompare(b[property]);
+      }
+    };
+  }
 
+  search(e) {
+    let filterStr = e.target.value.toLowerCase();
+    this.arrEmp = this.empService.empArray;
+    this.arrEmp = this.arrEmp.filter(emp => {
+      return (emp.name.toLowerCase().indexOf(filterStr) > -1 || emp.address.city.toLowerCase().indexOf(filterStr) > -1);
+    })
+  }
 }
